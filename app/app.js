@@ -51,8 +51,8 @@ require([
         App.vent.on('WindowModule.start', function(options){
             App.execute('debug', 'WindowModule.start event called.', 0); 
             App.WindowModule.add([
-                { id: 1 },
-                { id: 2 }
+                { id: 'window_1', class: 'class_1', options: { draggable: {   } } },
+                { id: 'window_2', class: 'class_2', options: { draggable: {   } } }
             ]);
         });
         

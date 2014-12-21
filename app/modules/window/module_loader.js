@@ -10,7 +10,7 @@ App.module("WindowModule", function (WindowModule) {
 });
 
 App.WindowModule.on('before:start', function(options){
-    App.execute('debug', 'Module App::LayoutModule before:start event invoked [LOADER.JS]', 0); 
+    App.execute('debug', 'App.WindowModule before:start event called', 0);
     this.options = options;
 });
 
@@ -50,7 +50,6 @@ require([
                         console.log(this.options.region);
                         console.log(this.views.WindowView);
                         this.options.region.show(this.views.WindowView);
-                        //this.options.region.show();
                     }
                     else {
                         App.execute('debug', 'App.WindowModule.addInitializer: window_id required.', -1);
@@ -63,7 +62,11 @@ require([
                     console.log(this.collection);
                     this.collection.add(models);
                     console.log(this.collection);
-                }
+                };
+                
+
+                
+                
                 
                 /*
                 LayoutModule.add = function(layouts) {
