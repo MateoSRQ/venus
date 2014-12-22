@@ -16,21 +16,26 @@ App.WindowModule.on('before:start', function(options){
 
 requirejs.config({
     shim: {
-        'jquery-ui': { deps:['jquery'] }
+        'jquery-ui': { deps:['jquery'] },
+        'velocity':  { deps:['jquery'] }
     },
     paths: {
         'jquery-ui': '../../app/modules/window/libs/jquery-ui-1.11.2/jquery-ui.min',
         'jquery-ui-css': '../../app/modules/window/libs/jquery-ui-1.11.2',
+        'velocity': '../../app/modules/window/libs/velocity/velocity-1.1.0-min'
     }
 });
 
 require([
     'modules/window/views/window_item',
-    'modules/window/models/window_item'    
+    'modules/window/models/window_item',
+    
+    'css!modules/window/css/window.css'
 ],
     function() {
         require([
             'jquery-ui',
+            'velocity',
             'modules/window/views/window_collection',
             'modules/window/models/window_collection',
 
