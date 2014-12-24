@@ -1,0 +1,38 @@
+
+.ui-resizable {
+  position:absolute !important;
+}
+
+.window_item_view  {
+    position: absolute;
+}
+
+
+.window_item_view .icon {
+    position: relative;
+}
+
+.window_item_view  .icon_minimize {
+    width: 10px;
+    height: 10px;
+    top: 0px;
+    right: 0px;
+    background: #ff0000;
+}
+
+.window_item_view  .icon_restore {
+    width: 10px;
+    height: 10px;
+    top: 0px;
+    right: 0px;
+    background: #00ff00;
+    display: none;
+}
+
+.window_item_view  .icon_close {
+    width: 10px;
+    height: 10px;
+    top: -10px;
+    right: -10px;
+    background: #0000ff;
+}

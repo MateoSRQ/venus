@@ -52,8 +52,6 @@ require([
                         this.collection = new App.WindowModule.WindowCollection();
                         App.WindowModule.options = this.options;
                         this.views.WindowView = new App.WindowModule.WindowView({collection: this.collection, window_id: this.options.id });
-                        console.log(this.options.region);
-                        console.log(this.views.WindowView);
                         this.options.region.show(this.views.WindowView);
                     }
                     else {
@@ -64,29 +62,23 @@ require([
                 
                 WindowModule.add = function(models) {
                     App.execute('debug', 'App.WindowModule.add function called.', 0);
-                    console.log(this.collection);
                     this.collection.add(models);
-                    console.log(this.collection);
+                    
                 };
                 
-
-                
-                
-                
-                /*
-                LayoutModule.add = function(layouts) {
-                    App.execute('debug', 'App.LayoutModule add function called.', 0);
-                    this.collection.add(layouts);
-                    var self = this;
-                    _.each(layouts, function(layout){
-                        console.log(layout.id);
-                        console.log("App.addRegions({" + layout.name + ": '#layout_" + layout.id + "' });");
-                        eval("App.addRegions({" + layout.name + ": '#" + layout.id + "' });");
-                    })
-                    App.vent.trigger('LayoutModule:add', layouts);
+                WindowModule.remove = function(condition) {
+                    App.execute('debug', 'App.WindowModule.remove function called.', 0);
+                    this.collection.remove(this.collection.where(condition));
                 };
-                */
             });
+            
+            App.WindowModule.vent.on('App.WindowModule.WindowItemView.click_icon_close', function(args) {
+                App.execute('debug', 'App.WindowModule.WindowItemView.click_icon_close.', 0);
+                App.WindowModule.remove({'id': args.model.get('id')})
+                App.vent.trigger('App.WindowModule.click_icon_close', args);
+            });
+            
+            
             /*
             App.LayoutModule.vent.on('LayoutItemView.render', function(args){
                 App.execute('debug', 'LayoutItemView.render event called.', 0);

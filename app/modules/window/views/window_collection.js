@@ -10,6 +10,11 @@ define([
                 return _.template(window_collection)({
                 })
             },
+            attributes : function () {
+                return {
+                    'class': 'window_collection'
+                };
+            },
             childView: App.WindowModule.WindowItemView
         });
 

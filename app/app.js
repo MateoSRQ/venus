@@ -11,7 +11,8 @@ require([
         App.layers = null;
 
         App.addRegions({
-            appRegion: '#app_region', 
+            appRegion: '#app_region',
+            stackRegion: '#stack_region'
         });
 
         App.commands.setHandler('debug', function(text, level){
@@ -51,9 +52,27 @@ require([
         App.vent.on('WindowModule.start', function(options){
             App.execute('debug', 'WindowModule.start event called.', 0); 
             App.WindowModule.add([
-                { id: 'window_1', class: 'class_1', options: { draggable: {   } } },
-                { id: 'window_2', class: 'class_2', options: { draggable: {   } } }
+                { id: 'window_1', class: 'class_1', options: { draggable: {}, resizable: {} } },
+                { id: 'window_2', class: 'class_2', options: { draggable: {}, resizable: {} } },
+                { id: 'window_3', class: 'class_3', options: { draggable: {}, resizable: {} } },
+                { id: 'window_4', class: 'class_4', options: { draggable: {}, resizable: {} } }
             ]);
+            App.WindowModule.remove({
+                id: 'window_3'
+            })
+        });
+        
+        App.vent.on('StackModule.start', function(options){
+            App.execute('debug', 'StackModule.start event called.', 0); 
+            App.StackModule.add([
+                { id: 'stack_1', class: 'stack_1', options: {  } },
+                { id: 'stack_2', class: 'stack_2', options: {  } },
+                { id: 'stack_3', class: 'stack_3', options: {  } },
+                { id: 'stack_4', class: 'stack_4', options: {  } }
+            ]);
+            App.StackModule.remove({
+                id: 'window_3'
+            })
         });
         
         
@@ -65,7 +84,8 @@ require([
             require([
                 
             ], function(){
-                App.execute('load', 'window', 'WindowModule', {id: 'window', region: App.appRegion}); 
+                App.execute('load', 'window', 'WindowModule', {id: 'window', region: App.appRegion});
+                App.execute('load', 'stack', 'StackModule', {id: 'stack', region: App.stackRegion}); 
             })
         })
     }
