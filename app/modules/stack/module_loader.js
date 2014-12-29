@@ -16,10 +16,14 @@ App.StackModule.on('before:start', function(options){
 
 requirejs.config({
     shim: {
-        'bespoke':  { deps:[] }
+        'bespoke':  { deps:[], exports: '' },
+        'bespoke-classes':  { deps:['bespoke'], exports: '' },
+        'bespoke-keys':  { deps:['bespoke'], exports: '' }
     },
     paths: {
         'bespoke': '../../app/modules/stack/libs/bespoke/dist/bespoke.min',
+        'bespoke-classes': '../../app/modules/stack/libs/bespoke/dist/bespoke.classes.min',
+        'bespoke-keys': '../../app/modules/stack/libs/bespoke/dist/bespoke.keys.min'
     }
 });
 
@@ -33,24 +37,41 @@ require([
     function() {
         require([
             'bespoke',
+            'bespoke-classes',
+            'bespoke-keys',
             'modules/stack/views/stack_collection',
             'modules/stack/models/stack_collection',            
             
             //'css!jquery-ui-css/jquery-ui.min.css'
         ],   
-        function () {
+        function (bespoke, classes, keys) {
             App.module('StackModule', function (StackModule, App, Backbone, Marionette, $, _) {
 
                 this.addInitializer(function(){
                     App.execute('debug', 'App.StackModule.addInitializer function called.', 0);
-                    
-                    this.collection = new App.StackModule.StackCollection();
-                    App.StackModule.options = this.options;
-                    this.views.StackView = new App.StackModule.StackView({collection: this.collection, window_id: this.options.id });
-
-                    this.options.region.show(this.views.StackView);
-                    
+                    if (this.options.id && typeof(this.options.id) !== undefined ) {
+                        this.collection = new App.StackModule.StackCollection();
+                        App.StackModule.options = this.options;
+                        this.views.StackView = new App.StackModule.StackView({collection: this.collection, stack_id: this.options.id });
+    
+                        this.options.region.show(this.views.StackView);
+                    }
+                    else {
+                        App.execute('debug', 'App.StackModule.addInitializer: stack_id required.', -1);
+                    }
                 });
+                
+                StackModule.start = function() {
+                    App.execute('debug', 'App.StackModule.start function called.', 0);
+                    console.log('xx');
+                    console.log(App.StackModule.options.id );
+                    console.log(classes);
+                    StackModule.handler = bespoke.from('#' + App.StackModule.options.id , [
+                        classes(),
+                        keys()
+                    ]);
+                    console.log(StackModule.handler)
+                };
                 
                 StackModule.add = function(models) {
                     App.execute('debug', 'App.StackModule.add function called.', 0);
@@ -62,6 +83,7 @@ require([
                     this.collection.remove(this.collection.where(condition));
                 };
             });
+            /*
             
             App.StackModule.vent.on('App.StackModule.WindowItemView.click_icon_close', function(args) {
                 App.execute('debug', 'App.StackModule.WindowItemView.click_icon_close.', 0);
@@ -70,7 +92,7 @@ require([
             });
             
             
-            /*
+
             App.LayoutModule.vent.on('LayoutItemView.render', function(args){
                 App.execute('debug', 'LayoutItemView.render event called.', 0);
                 App.vent.trigger('LayoutItemView.render', args);

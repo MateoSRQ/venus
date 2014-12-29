@@ -65,14 +65,19 @@ require([
         App.vent.on('StackModule.start', function(options){
             App.execute('debug', 'StackModule.start event called.', 0); 
             App.StackModule.add([
-                { id: 'stack_1', class: 'stack_1', options: {  } },
-                { id: 'stack_2', class: 'stack_2', options: {  } },
-                { id: 'stack_3', class: 'stack_3', options: {  } },
-                { id: 'stack_4', class: 'stack_4', options: {  } }
+                { id: 'stack_1', class: 'stack_item', options: {  } },
+                { id: 'stack_2', class: 'stack_item', options: {  } },
+                { id: 'stack_3', class: 'stack_item', options: {  } },
+                { id: 'stack_4', class: 'stack_item', options: {  } },
+                { id: 'stack_5', class: 'stack_item', options: {  } },
+                { id: 'stack_6', class: 'stack_item', options: {  } },
+                { id: 'stack_7', class: 'stack_item', options: {  } },
+                { id: 'stack_8', class: 'stack_item', options: {  } }
             ]);
             App.StackModule.remove({
-                id: 'window_3'
+                id: 'stack_3'
             })
+            App.StackModule.start();
         });
         
         
