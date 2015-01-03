@@ -4,9 +4,8 @@
 }
 
 .stack_item {
-  height: 100%;
-  width: 400px;
-  outline: 1px solid red;
+
+
   float: left;
 }
 
@@ -119,13 +118,13 @@ section {
 	transform: none;
 	background: #c0c0c0;
 	border-radius: 30px;
-	width: 512px;
-	height: 380px;
+	width: 450px;
+	height: 600px;
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	margin-left: -256px;
-	margin-top: -220px;
+	margin-left: -225px;
+	margin-top: -300px;
 	opacity: 0;
 }
 
@@ -148,7 +147,7 @@ section.bespoke-active {
 }
 .coverflow section,
 .coverflow .arrow:hover {
-  background: rgb(42, 206, 185);
+  /* background: rgb(42, 206, 185); */
 }
 .coverflow a {
 	color: rgb(42, 206, 185);

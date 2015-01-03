@@ -24,7 +24,7 @@ define([
             onRender: function(){
                 App.execute('debug', 'App.StackModule.StackItemView.onRender event called.', 0);
                 var _options = this.model.get('options');
-                 App.WindowModule.vent.trigger('StackItemView.render', this);
+                 App.StackModule.vent.trigger('StackItemView.render', this);
             }
             
         });

@@ -10,7 +10,8 @@ requirejs.config({
         'underscore': { deps: [], exports: ['_'] },
         'backbone': { deps: ['underscore', 'jquery'], exports: ['Backbone'] },
         'marionette': { deps: ['backbone'], exports:  ['Marionette']},
-        //'bootstrap': { deps: ['jquery'] },
+        'bootstrap': { deps: ['jquery'] },
+        'material_design': { deps: ['bootstrap'] },
         'velocity': { deps: [] },
         'app': { deps: ['marionette'] }
     },
@@ -20,11 +21,12 @@ requirejs.config({
         'backbone': '../backbone/backbone-1.1.2.min',
         'marionette': '../marionette/marionette-2.3.0.min',
 
+        
+        'bootstrap': '../bootstrap/dist/js/bootstrap.min',
+        'css_bootstrap': '../bootstrap/dist/css',
+        'material_design': '../material_design/bootstrap-material-design-master/dist/js/material.min',
+        'css_material_design': '../material_design/bootstrap-material-design-master/dist/css',
         /*
-        'bootstrap': '../bootstrap/js/bootstrap.min',
-        'css_bootstrap': '../bootstrap/css',
-        'material_design': '../bootstrap_themes/material-design/dist/js/material.min',
-        'css_material_design': '../bootstrap_themes/material-design/dist/css',
         'velocity': '../velocity/velocity-1.1.0-min',
         'css_font-awesome': '../font-awesome',
         */

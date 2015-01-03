@@ -2,7 +2,10 @@
 console.clear();
 
 require([
-    'marionette'
+    'marionette',
+    'material_design',
+    'css!css_bootstrap/bootstrap.min.css',
+    'css!css_material_design/material.min.css'
 ],
     function (Marionette) {
         window.App = new Backbone.Marionette.Application({
@@ -11,8 +14,9 @@ require([
         App.layers = null;
 
         App.addRegions({
-            appRegion: '#app_region',
-            stackRegion: '#stack_region'
+            //appRegion: '#app_region',
+            stackRegion: '#stack_region',
+            layoutRegion: '#layout_region'
         });
 
         App.commands.setHandler('debug', function(text, level){
@@ -65,14 +69,14 @@ require([
         App.vent.on('StackModule.start', function(options){
             App.execute('debug', 'StackModule.start event called.', 0); 
             App.StackModule.add([
-                { id: 'stack_1', class: 'stack_item', options: {  } },
-                { id: 'stack_2', class: 'stack_item', options: {  } },
-                { id: 'stack_3', class: 'stack_item', options: {  } },
-                { id: 'stack_4', class: 'stack_item', options: {  } },
-                { id: 'stack_5', class: 'stack_item', options: {  } },
-                { id: 'stack_6', class: 'stack_item', options: {  } },
-                { id: 'stack_7', class: 'stack_item', options: {  } },
-                { id: 'stack_8', class: 'stack_item', options: {  } }
+                { id: 'stack_1', class: 'stack_item well', options: {  } },
+                { id: 'stack_2', class: 'stack_item well', options: {  } },
+                { id: 'stack_3', class: 'stack_item well', options: {  } },
+                { id: 'stack_4', class: 'stack_item well', options: {  } },
+                { id: 'stack_5', class: 'stack_item well', options: {  } },
+                { id: 'stack_6', class: 'stack_item well', options: {  } },
+                { id: 'stack_7', class: 'stack_item well', options: {  } },
+                { id: 'stack_8', class: 'stack_item well', options: {  } }
             ]);
             App.StackModule.remove({
                 id: 'stack_3'
@@ -89,8 +93,11 @@ require([
             require([
                 
             ], function(){
-                App.execute('load', 'window', 'WindowModule', {id: 'window', region: App.appRegion});
-                App.execute('load', 'stack', 'StackModule', {id: 'stack', region: App.stackRegion}); 
+                //App.execute('load', 'window', 'WindowModule', {id: 'window', region: App.appRegion});
+                App.execute('load', 'stack', 'StackModule', {id: 'stack', region: App.stackRegion});
+                //App.execute('load', 'map', 'MapModule', {id: 'map', region: App.mapRegion});
+                App.execute('load', 'layout', 'LayoutModule', {id: 'layout', region: App.layoutRegion, class: 'layout'});
+                
             })
         })
     }
